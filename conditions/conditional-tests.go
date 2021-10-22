@@ -26,4 +26,21 @@ func main() {
 		fmt.Println("continuing")
 		continue
 	}
+
+	if i := 4; i == 4 { //local i, scoped within the function
+		fmt.Println("i is 4")
+	}
+
+	switch i { //function i var which is 3
+	case 1:
+		fmt.Println("i 1")
+
+	case 3, 52, 88:
+		fmt.Println("i 3")
+		fallthrough //this makes switch work like in c# and java
+	case 4:
+		fmt.Println("i 4")
+	case 5:
+		fmt.Println("i 5")
+	}
 }
