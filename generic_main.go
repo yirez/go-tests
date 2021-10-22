@@ -7,5 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Println(modules1.HelloWithQuotes())
+	n, _ := fmt.Println(modules1.HelloWithQuotes())
+	fmt.Println(n)
 }
