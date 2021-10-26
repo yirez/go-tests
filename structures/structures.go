@@ -41,4 +41,17 @@ func main() {
 	fmt.Println(my_map)
 	fmt.Println(my_map["testkey2"])
 
+	//adding to a map
+
+	fmt.Println("adding map item")
+	my_map["some_key_that_didnt_exist"] = 55
+	for key, val := range my_map {
+		fmt.Println(key, val)
+	}
+
+	fmt.Println("deleting map item")
+	delete(my_map, "some_key_that_didnt_exist")
+	for key, val := range my_map {
+		fmt.Println(key, val)
+	}
 }
