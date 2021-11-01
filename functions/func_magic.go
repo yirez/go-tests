@@ -39,6 +39,7 @@ func main() {
 	someOtherData.typeActionFunc()
 	interfaceFunc(someData)
 	interfaceFunc(someOtherData)
+	interfaceFunc(&someData) //works with pointer values as well.
 } // defer keyword waits until the end of parent func to run
 
 func normalFunc() {
@@ -69,6 +70,8 @@ func interfaceFunc(interfacedType someInterfaceName) {
 		fmt.Println("field1: ", interfacedType.(someCustomTypeName).field1, "\n", "field2: ", interfacedType.(someCustomTypeName).field2)
 	case someOtherCustomTypeName:
 		fmt.Println("field3: ", interfacedType.(someOtherCustomTypeName).field3, "\n", "field4: ", interfacedType.(someOtherCustomTypeName).field4)
+	case *someCustomTypeName:
+		fmt.Println("field1: ", interfacedType.(*someCustomTypeName).field1, "\n", "field2: ", interfacedType.(*someCustomTypeName).field2)
 	default:
 		fmt.Println(interfacedType)
 	}
