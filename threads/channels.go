@@ -23,9 +23,9 @@ func main() {
 }
 
 func generateNum() {
+	defer waitGroup2.Done()
 	rand.Seed(time.Now().UnixNano())
 	channelInt <- rand.Intn(100-10) + 10
-	waitGroup2.Done()
 }
 
 func yell2() {
