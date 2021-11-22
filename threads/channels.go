@@ -9,7 +9,11 @@ import (
 )
 
 var waitGroup2 sync.WaitGroup
+
 var channelInt = make(chan int)
+
+//var channelInt = make(<-chan int)   //receive only
+//var channelInt = make(chan<- int)   //send only
 
 func main() {
 
