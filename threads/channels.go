@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"runtime"
 	"sync"
 	"time"
 )
@@ -21,9 +20,13 @@ func main() {
 	go generateNum()
 	go yell2()
 	fmt.Printf("rand: %v \n", <-channelInt)
-	close(channelInt)
+
 	waitGroup2.Wait()
-	fmt.Printf("%v go routines finished\n", runtime.NumGoroutine())
+	go stuffToChannel()
+
+	for val := range channelInt {
+		fmt.Printf("in range reading channel:%v\n", val)
+	}
 }
 
 func generateNum() {
@@ -37,4 +40,13 @@ func yell2() {
 	for i := 0; i < 3; i++ {
 		fmt.Printf("YELLING HI, %v times\n", i)
 	}
+}
+
+func stuffToChannel() {
+	for i := 0; i < 10; i++ {
+		channelInt <- i
+		fmt.Printf("stuffing %v to channel\n ", i)
+		time.Sleep(1 * time.Second)
+	}
+	close(channelInt)
 }
