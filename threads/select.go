@@ -13,12 +13,13 @@ func main() {
 
 	for {
 		select {
-		case data := <-channelNumInt:
-			fmt.Printf("in range reading channel:%v\n", data)
-		case data := <-channelQuit:
-			fmt.Printf("Exiting:%v\n", data)
+		case data, ready := <-channelNumInt:
+			fmt.Printf("in range reading channel:%v - channel ready?%v\n", data, ready)
+		case data, ready := <-channelQuit:
+			fmt.Printf("Exiting:%v- channel ready?%v\n", data, ready)
 			return
 		}
+		//ready will be false if channel closed or not ready yet for a reason
 	}
 }
 
